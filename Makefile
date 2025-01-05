@@ -9,4 +9,7 @@ run-init:
 	@docker compose --env-file ./.env -f docker-compose.yml up -d --build --force-recreate
 
 run:
-	@docker compose --env-file ./.env -f docker-compose.yml up --build -d --force-recreate
+	@echo "make sure global-vm-network is running"
+	@docker network create global-vm-network
+	@echo "running docker compose up..."
+	@docker compose --env-file ./.env -f docker-compose.yml up -d
