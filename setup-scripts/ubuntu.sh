@@ -58,3 +58,6 @@ sudo systemctl enable docker
 
 # check status
 sudo systemctl status docker
+
+# newgrp docker for the current user
+newgrp docker
