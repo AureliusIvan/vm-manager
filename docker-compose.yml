@@ -13,8 +13,6 @@ services:
       - ./data/portainer-data:/data
     ports:
       - "9000:9000"
-    networks:
-      - app-network
 
   nginx-proxy-manager:
     container_name: umn-cts-nginx-proxy-manager
@@ -27,8 +25,6 @@ services:
     volumes:
       - ./data/nginx-proxy-manager-data:/data
       - ./data/letsencrypt:/etc/letsencrypt
-    networks:
-      - app-network
     environment:
       INITIAL_ADMIN_EMAIL: ${NPM_INITIAL_ADMIN_EMAIL:-admin@admin.com}
       INITIAL_ADMIN_PASSWORD: ${NPM_INITIAL_ADMIN_PASSWORD:-umncts}
@@ -42,8 +38,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --interval 30
     restart: unless-stopped
-    networks:
-      - app-network
 
   grafana:
     container_name: umn-cts-grafana
@@ -76,8 +70,6 @@ services:
           editable: false
         EOF
         /run.sh
-    networks:
-      - app-network
 
   loki:
     container_name: umn-cts-loki
@@ -88,8 +80,6 @@ services:
     volumes:
       - ./data/loki-data:/loki
       - ./config/loki-config.yaml:/etc/loki/config.yaml
-    networks:
-      - app-network
 
   promtail:
     container_name: umn-cts-promtail
@@ -100,9 +90,8 @@ services:
     command: -config.file=/etc/promtail/config.yaml
     depends_on:
       - loki
-    networks:
-      - app-network
 
 networks:
-  app-network:
-    driver: bridge
+  default:
+    external: true
+    name: ${NETWORK_NAME:-nginx-proxy-manager-network}
