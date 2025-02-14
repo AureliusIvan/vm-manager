@@ -83,7 +83,7 @@ services:
 
   promtail:
     container_name: umn-cts-promtail
-    image: grafana/promtail:2.7.1
+    image: grafana/promtail:2.9.12
     volumes:
       - /data/nginx-proxy-manager-data/nginx/logs/:/var/log # path to your NPM logs
       - ./config/promtail-config.yaml:/etc/promtail/config.yaml
