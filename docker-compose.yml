@@ -41,7 +41,7 @@ services:
 
   grafana:
     container_name: umn-cts-grafana
-    image: grafana/grafana:9.3.13
+    image: grafana/grafana:11.5.1
     ports:
       - "3050:3000"
     environment:
