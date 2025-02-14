@@ -73,7 +73,7 @@ services:
 
   loki:
     container_name: umn-cts-loki
-    image: grafana/loki:3.3.2
+    image: grafana/loki:3.4.1
     user: root
     ports:
       - "3100:3100"
