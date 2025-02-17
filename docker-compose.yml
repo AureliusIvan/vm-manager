@@ -16,7 +16,7 @@ services:
 
   nginx-proxy-manager:
     container_name: umn-cts-nginx-proxy-manager
-    image: 'jc21/nginx-proxy-manager:2.12.2'
+    image: 'jc21/nginx-proxy-manager:2.12.3'
     restart: unless-stopped
     ports:
       - "0.0.0.0:80:80"
